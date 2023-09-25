@@ -11,7 +11,7 @@ export const Start = () => {
         fecthQuestions(LIMIT_QUESTIONS) //se actualiza el estado llamando a la funcion
     }
     return (
-        <Button onClick={handleClick} variant='contained'>
+        <Button onClick={handleClick} sx={{marginTop: '16px'}} variant='contained'>
             !Empezar!
         </Button>    
         )
