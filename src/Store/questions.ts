@@ -40,7 +40,7 @@ export const useQuestionsStore = create<State>()(persist((set, get) => {
             //usar el structuredClone para clonar el objeto
             const newQuestions = structuredClone(questions); // <-- lo que se hace es clonar todas las preguntas
             // encontramos el indice de la pregunta
-            const questionIndex = newQuestions.findIndex(q => q.id === questionId);
+            const questionIndex = newQuestions.findIndex((q:{id:number}) => q.id === questionId);
             //obtenemos la informacion de la pregunta
             const questionInfo = newQuestions[questionIndex];
             //averiguamos si el usuario ha seleccionado la respuesta correcta
