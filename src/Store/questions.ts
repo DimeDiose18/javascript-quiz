@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { type Question } from '../types';
 import confetti from 'canvas-confetti';
 import { persist } from 'zustand/middleware'; //captura los cambios que quieras hacer en el store al localstorage
-import { getAllQuestions } from '../services/questions';
+import data from '../data.json'
 //import { getAllQuestions } from '../services/questions';
 
 
@@ -11,7 +11,7 @@ interface State {
 [x: string]: any; //explicar el estado
 questions: Question[]
 currentQuestion: number
-fetchQuestions: (limit: number) => Promise<void> //metodo
+fetchQuestions: (limit: number) => void //metodo
 selectAnswer: (questionsId: number, answerIndex: number) => void
 goNextQuestion: () => void
 goPreviusQuestion: () => void
@@ -25,8 +25,8 @@ export const useQuestionsStore = create<State>()(persist((set, get) => {
         currentQuestion: 0,// <--- posicion actual del array de questions
         
         
-        fetchQuestions: async (limit: number) => {
-            const json = await getAllQuestions()
+        fetchQuestions: (limit: number) => {
+            const json = data
  
             const questions = json.sort(() => Math.random() - 0.5).slice(0, limit)
            
